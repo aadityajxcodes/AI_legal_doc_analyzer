@@ -1,0 +1,86 @@
+# 🧾 AI Legal Document Analyzer
+
+An intelligent legal document analyzer built with **Python**, **Streamlit**, and **OpenRouter API**. This app allows you to upload legal documents (PDF, DOCX, or TXT), and instantly:
+
+- 🧠 Summarize them in simple language  
+- ❓ Ask questions and get answers from the content  
+- 📜 View extracted text  
+- 🔐 Keep your API key secure with `.env`
+
+---
+
+## 🚀 Demo
+
+> Coming soon: Hosted on Streamlit Cloud  
+> *(You can also run it locally — see instructions below)*
+
+---
+
+## 📂 Features
+
+✅ Upload PDF, DOCX, or TXT legal files  
+✅ Extracts text using PyMuPDF and `python-docx`  
+✅ Summarizes documents using AI (OpenRouter API)  
+✅ Ask custom questions (Q&A on document content)  
+✅ Clean UI built with Streamlit  
+✅ `.env` secure API key integration  
+✅ Open source and easily extensible
+
+---
+
+## 🛠️ Tech Stack
+
+- **Python 3.10+**
+- **Streamlit** – UI
+- **OpenRouter API** – AI (Mistral/GPT models)
+- **PyMuPDF** – PDF text extraction
+- **python-docx** – DOCX handling
+- **requests** – API calls
+- **dotenv** – Secure environment variables
+
+---
+
+## 📦 Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/legal-doc-analyzer.git
+cd legal-doc-analyzer
+
+
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# macOS/Linux
+source .venv/bin/activate
+pip install -r requirements.txt
+
+
+# to run the app
+streamlit run app.py
+
+
+🧪 Sample Questions for Testing
+"What is this agreement about?"
+
+"Who are the involved parties?"
+
+"When does this agreement start and end?"
+
+"What are the confidentiality terms?"
+
+"What happens in case of breach?"
+
+
+
+🧑‍💻 Author
+Made with ❤️ aadityajxcodes
+
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
+

@@ -65,7 +65,7 @@ Environment Handling: python-dotenv
 
 1 . Clone the repo:
 
-git clone https://github.com/yourusername/legal-doc-analyzer
+git clone https://github.com/yourusername/lawlens
 cd legal-doc-analyzer
 
 2 . Create and activate a virtual environment:

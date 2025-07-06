@@ -146,8 +146,16 @@ import spacy
 from PyPDF2 import PdfReader
 import docx
 
-# Load spaCy model
-nlp = spacy.load("en_core_web_sm")
+
+from spacy.cli import download
+# Load spaCy model, downloading if necessary
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
+
+
 
 # Extract text from uploaded file
 def extract_text(uploaded_file):

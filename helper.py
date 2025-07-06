@@ -145,7 +145,7 @@ import fitz  # PyMuPDF
 # import spacy
 from PyPDF2 import PdfReader
 import docx
-
+from datetime import datetime
 
 # from spacy.cli import download
 # # Load spaCy model, downloading if necessary
@@ -197,6 +197,15 @@ def export_to_docx(summary, qa_list):
 #     return [(ent.text, ent.label_) for ent in doc.ents]
 
 
+def format_pdf_date(raw_date):
+    try:
+        if raw_date.startswith("D:"):
+            dt = datetime.strptime(raw_date[2:], "%Y%m%d%H%M%S")
+            return dt.strftime("%B %d, %Y - %H:%M:%S")
+    except:
+        pass
+    return raw_date  # fallback to original
+
 
 def check_document_authenticity(file):
     file_type = file.name.split('.')[-1]
@@ -206,16 +215,20 @@ def check_document_authenticity(file):
         reader = PdfReader(file)
         metadata = reader.metadata
         if metadata:
-            meta_info = {key[1:]: str(value) for key, value in metadata.items()}
-    
+            for key, value in metadata.items():
+                if key[1:] in ["CreationDate", "ModDate"]:
+                    meta_info[key[1:]] = format_pdf_date(str(value))
+                else:
+                    meta_info[key[1:]] = str(value)
+
     elif file_type == "docx":
         document = docx.Document(file)
         props = document.core_properties
         meta_info = {
-            "author": props.author,
-            "title": props.title,
-            "created": props.created,
-            "last_modified_by": props.last_modified_by
+            "Author": props.author,
+            "Title": props.title,
+            "Created": str(props.created),
+            "Last Modified By": props.last_modified_by
         }
 
     return meta_info

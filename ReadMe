@@ -5,7 +5,8 @@ LawLens is a beginner-friendly AI-powered web app that helps simplify, analyze, 
 
 It lets users upload legal files like PDFs, DOCX, or plain text, and then performs useful AI tasks such as summarization, Q&A, fake clause detection, and named entity recognition — all within a sleek, Streamlit-powered UI.
 
-🚀 What It Can Do
+🚀 What It Can Do: 
+
 ✅ Summarize Legal Documents
 Converts dense legal text into simplified summaries in seconds using an LLM.
 
@@ -15,8 +16,25 @@ Lets you ask custom questions about the uploaded legal file and provides intelli
 🚨 Detect Suspicious or Fake Clauses
 Uses LLM reasoning to flag vague, unusual, or risky clauses automatically.
 
-📌 Named Entity Recognition (NER)
-Extracts important people, places, laws, organizations, and dates from the document using spaCy.
+📎 Document Metadata Viewer
+Displays embedded metadata from uploaded PDF and DOCX files such as:
+
+Author
+
+Title
+
+Creation & modification dates
+
+Page count and producer (for PDFs)
+
+🧠 Why it matters:
+This metadata is crucial for verifying the origin, version history, and authorship of legal documents — especially in due diligence and legal audits.
+
+🕵️‍♂️ Document Authenticity Checker
+Analyzes internal file properties to assess if the document appears manipulated or suspicious. For PDFs, it checks embedded metadata; for DOCX files, it inspects the core properties.
+
+🧠 Why it matters:
+Fake or tampered documents are common in legal and compliance scenarios. This feature helps lawyers and legal teams validate document authenticity at a glance — without opening complex tools.
 
 📄 Export Summary and Answers
 Allows you to download the summary and Q&A results in .docx format for sharing or saving.
@@ -70,7 +88,7 @@ streamlit run app.py
 
 
 🌐 Live Demo
-🔗 Try it live: https://legal-doc-analyzer-9t4umvwqhbsfks7edq7gmv.streamlit.app/
+🔗 Try it live: https://aadityajxcodes-lawlens.streamlit.app/
 
 
 🎯 Use Cases

@@ -496,6 +496,7 @@ import streamlit as st
 import requests
 from helper import extract_text, export_to_docx
 from dotenv import load_dotenv
+from helper import check_document_authenticity
 import os
 from PIL import Image
 
@@ -553,6 +554,14 @@ Clause: \"\"\"{clause}\"\"\"
 
 # --- Streamlit UI ---
 st.set_page_config(page_title=" ⚖️ LawLens | AI Legal Analyzer", layout="wide")
+
+st.markdown("""
+    <style>
+        .block-container {
+            padding-top: 1rem !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 
 st.markdown("""
@@ -640,8 +649,9 @@ if uploaded_file:
 
     # --- Horizontal Buttons ---
     st.markdown("### ⚙️ Features")
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4, col5 = st.columns([1, 1, 1, 1, 1])
 
+    # --- Summarization ---
     with col1:
         if st.button("🧠 Summarize"):
             with st.spinner("Summarizing via OpenRouter..."):
@@ -651,6 +661,8 @@ if uploaded_file:
                 st.subheader("📝 Summary")
                 st.write(summary)
 
+
+    # --- Detect fake clause ---
     with col2:
         if st.button("🚨 Detect Fake Clauses"):
             with st.spinner("Analyzing for suspicious clauses..."):
@@ -663,19 +675,18 @@ if uploaded_file:
                         st.markdown("---")
                 else:
                     st.success("✅ No suspicious clauses detected.")
-
-    # with col3:
-    #     if st.button("🔍 Named Entities"):
-    #         with st.spinner("Extracting entities..."):
-    #             entities = extract_named_entities(text)
-    #             st.subheader("📌 Named Entities")
-    #             if entities:
-    #                 for ent_text, ent_label in entities:
-    #                     st.markdown(f"- **{ent_text}** *(type: {ent_label})*")
-    #             else:
-    #                 st.info("No named entities found.")
-
+    
+    # Authenticity check
     with col3:
+        if st.button("🕵️‍♂️ Check Authenticity"):
+            with st.spinner("Analyzing for fake clauses..."):
+                prompt = f"Review the following legal document for any suspicious, fake, or misleading clauses. Highlight anything unusual:\n\n{text}"
+                authenticity_report = ask_openrouter(prompt)
+                st.subheader("🧾 Authenticity Report")
+                st.write(authenticity_report)
+    
+    #Export summary
+    with col5:
         if st.button("📄 Export Summary"):
             if st.session_state.summary:
                 export_to_docx(st.session_state.summary, st.session_state.qa_list)
@@ -688,6 +699,19 @@ if uploaded_file:
                     )
             else:
                 st.warning("⚠️ Please generate a summary first.")
+   
+    #metadata extraction
+    with col4:
+        if st.button("📎 Show Metadata"):
+            with st.spinner("Extracting metadata..."):
+                metadata = check_document_authenticity(uploaded_file)
+            st.subheader("📎 Document Metadata")
+            if metadata:
+                for key, value in metadata.items():
+                    st.write(f"**{key}:** {value}")
+            else:
+                st.warning("⚠️ No embedded metadata found in this file.")
+
 
     # --- Question Answering ---
     st.markdown("---")

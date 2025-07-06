@@ -498,7 +498,7 @@ from helper import extract_text, export_to_docx
 from dotenv import load_dotenv
 import os
 from PIL import Image
-import spacy
+
 
 
 import base64

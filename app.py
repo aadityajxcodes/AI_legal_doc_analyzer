@@ -723,3 +723,15 @@ if uploaded_file:
             st.session_state.qa_list.append((user_question, answer))
             st.subheader("🗣️ Answer")
             st.write(answer)
+
+
+
+st.markdown(
+    """
+    <hr style="margin-top: 50px; margin-bottom: 10px;">
+    <div style="text-align: center; color: gray; font-size: 0.9rem;">
+        Built by <b>aadityajxcodes</b>
+    </div>
+    """,
+    unsafe_allow_html=True
+)

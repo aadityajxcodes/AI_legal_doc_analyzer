@@ -611,7 +611,7 @@ if uploaded_file:
 
     # --- Horizontal Buttons ---
     st.markdown("### ⚙️ Features")
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3 = st.columns(3)
 
     with col1:
         if st.button("🧠 Summarize"):
@@ -646,7 +646,7 @@ if uploaded_file:
     #             else:
     #                 st.info("No named entities found.")
 
-    with col4:
+    with col3:
         if st.button("📄 Export Summary"):
             if st.session_state.summary:
                 export_to_docx(st.session_state.summary, st.session_state.qa_list)

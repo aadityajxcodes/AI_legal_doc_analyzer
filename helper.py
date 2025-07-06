@@ -142,18 +142,18 @@
 from docx import Document
 import textract
 import fitz  # PyMuPDF
-import spacy
+# import spacy
 from PyPDF2 import PdfReader
 import docx
 
 
-from spacy.cli import download
-# Load spaCy model, downloading if necessary
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    download("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
+# from spacy.cli import download
+# # Load spaCy model, downloading if necessary
+# try:
+#     nlp = spacy.load("en_core_web_sm")
+# except OSError:
+#     download("en_core_web_sm")
+#     nlp = spacy.load("en_core_web_sm")
 
 
 
@@ -192,9 +192,9 @@ def export_to_docx(summary, qa_list):
     doc.save("Legal_Summary.docx")
 
 # Named Entity Recognition
-def extract_named_entities(text):
-    doc = nlp(text)
-    return [(ent.text, ent.label_) for ent in doc.ents]
+# def extract_named_entities(text):
+#     doc = nlp(text)
+#     return [(ent.text, ent.label_) for ent in doc.ents]
 
 
 

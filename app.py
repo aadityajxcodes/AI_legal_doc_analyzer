@@ -494,10 +494,11 @@
 
 import streamlit as st
 import requests
-from helper import extract_text, export_to_docx, extract_named_entities
+from helper import extract_text, export_to_docx
 from dotenv import load_dotenv
 import os
 from PIL import Image
+import spacy
 
 
 import base64
@@ -634,16 +635,16 @@ if uploaded_file:
                 else:
                     st.success("✅ No suspicious clauses detected.")
 
-    with col3:
-        if st.button("🔍 Named Entities"):
-            with st.spinner("Extracting entities..."):
-                entities = extract_named_entities(text)
-                st.subheader("📌 Named Entities")
-                if entities:
-                    for ent_text, ent_label in entities:
-                        st.markdown(f"- **{ent_text}** *(type: {ent_label})*")
-                else:
-                    st.info("No named entities found.")
+    # with col3:
+    #     if st.button("🔍 Named Entities"):
+    #         with st.spinner("Extracting entities..."):
+    #             entities = extract_named_entities(text)
+    #             st.subheader("📌 Named Entities")
+    #             if entities:
+    #                 for ent_text, ent_label in entities:
+    #                     st.markdown(f"- **{ent_text}** *(type: {ent_label})*")
+    #             else:
+    #                 st.info("No named entities found.")
 
     with col4:
         if st.button("📄 Export Summary"):

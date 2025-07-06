@@ -553,6 +553,35 @@ Clause: \"\"\"{clause}\"\"\"
 
 # --- Streamlit UI ---
 st.set_page_config(page_title=" ⚖️ LawLens | AI Legal Analyzer", layout="wide")
+
+
+st.markdown("""
+    <style>
+    /* Style all buttons */
+    .stButton > button {
+        background-color: #003366; /* Deep Blue base */
+        color: white;
+        border-radius: 8px;
+        padding: 0.6em 1.2em;
+        font-size: 16px;
+        border: none;
+        transition: 0.3s ease-in-out;
+    }
+
+    /* On hover - golden */
+    .stButton > button:hover {
+        background-color: #a67c00 !important;
+        color: white !important;
+    }
+
+    /* On click (active) - slightly darker gold */
+    .stButton > button:active {
+        background-color: #8a6b00 !important;
+        color: white !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # st.title("⚖️ LawLens — AI Legal Document Analyzer")
 # st.caption("🔍 Understand complex legal documents with the power of AI.")
 
@@ -576,7 +605,7 @@ logo_base64 = logo_to_base64(logo_img)
 st.markdown(f"""
     <div style='display: flex; align-items: center; gap: 10px;'>
         <img src="data:image/png;base64,{logo_base64}" width="45">
-        <h1 style='margin: 0; color: #FFF;'>LawLens — <span style="font-weight: 400;">AI Legal Document Analyzer</span></h1>
+        <h1 style='margin: 0; color: #a67c00;'>LawLens — <span style="font-weight: 400;">AI Legal Document Analyzer</span></h1>
     </div>
 """, unsafe_allow_html=True)
 st.caption("🔍 Understand complex legal documents with the power of AI.")
